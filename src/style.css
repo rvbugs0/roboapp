@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+body,
+html {
+  background-color:#113f67; 
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+
+  height: 100%;
+  margin: 0;
+}
+
+.appLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* Allow the main content to grow and take up remaining vertical space */
+}
+
+.outlet-container {
+  height: 100%; /* Ensure the outlet container takes up the full height of main content */
+}
+
+.footer {
+  flex-shrink: 0;
+  padding: 0px;
+  background-color: #eeeeee;
+  color: #000;
+  padding: 5px;
+  font-size: 0.9em;
+  
+}
+
+.center {
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+  vertical-align: auto;
+
+  text-align: center;
+}
+
+.content{
+    padding: 20px 20px 20px 40px;
+}
+
+.titleBar{
+
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    
+}
+
+.title{
+    font-size: 1.5em;
+    font-weight: 1000;
+}
+
+
+.assistantListItem{
+    border-radius: 10px;
+    padding: 1px 1px 1px 15px;
+    
+    background-color:#38598b;;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  text-align: center;
+}
+
+.card{
+  margin-top: 25px;
+}
