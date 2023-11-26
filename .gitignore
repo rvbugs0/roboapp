@@ -1,0 +1,14 @@
+node_modules
+**/node_modules
+node_modules/
+
+.parcel-cache
+.parcel-cache/
+
+dist
+dist/
+
+.DS_Store
+build
+robot-data/
+src/assets

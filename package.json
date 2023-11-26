@@ -2,7 +2,6 @@
   "name": "electron",
   "version": "1.0.0",
   "description": "",
-  
   "build": {
     "directories": {
       "buildResources": "build",
@@ -50,6 +49,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.17.0",
     "react-router-dom": "^6.16.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1"
   }
 }

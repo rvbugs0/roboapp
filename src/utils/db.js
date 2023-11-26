@@ -5,6 +5,7 @@ const {
   WORKING_DIRECTORY,
   DEFAULT_OUTPUT_DIRECTORY,
 } = require("./constants");
+const { getUUID } = require("./app_utils");
 const sqlite3 = require("sqlite3").verbose();
 
 function Robot() {
@@ -91,7 +92,7 @@ function createTable(db) {
   db.exec(`
   CREATE TABLE run_data
   (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id VARCHAR(100) PRIMARY KEY,
     robot_id INTEGER NOT NULL,
     start_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     end_time DATETIME,
@@ -114,9 +115,12 @@ function createTable(db) {
 }
 
 function addRunRecord(runInfo, onExecuted) {
+  const uuid = getUUID();
   console.log(runInfo);
   let sql =
-    'INSERT INTO run_data (robot_id,output_directory) values("' +
+    'INSERT INTO run_data (id,robot_id,output_directory) values("' +
+    uuid +
+    '","' +
     runInfo.roboId +
     '","' +
     runInfo.outputDirectory +
@@ -130,8 +134,8 @@ function addRunRecord(runInfo, onExecuted) {
       onExecuted(true, err.message);
     }
     // get the last insert id
-    console.log(`A row has been inserted with rowid ${this.lastID}`);
-    onExecuted(false, this.lastID);
+    // console.log(`A row has been inserted with rowid ${this.lastID}`);
+    onExecuted(false, uuid);
   });
   db.close();
 }
@@ -298,5 +302,5 @@ module.exports = {
   updateRunRecord,
   getRunDataById,
   getAllRobots,
-  deleteRobot
+  deleteRobot,
 };

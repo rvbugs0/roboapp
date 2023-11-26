@@ -39,7 +39,7 @@ const {
   getRobotPath,
   getRobotIdFromCommand,
 } = require("./CommandUtils");
-const { fetchAvailableRobots } = require("./supabase_utils");
+const { fetchAvailableRobots, uploadZipFileAndCreateEntry } = require("./supabase_utils");
 
 const executeCommand = (command, onExecutionFinished) => {
   const whichCommand = getCommandType(command);
@@ -300,7 +300,7 @@ function execute_robot(
         onExecutionFinished(true, message);
       } else {
         updateRunRecord(run_id, true);
-        zip_robot_output(directoryPath, directoryPath);
+        zip_robot_output(directoryPath, directoryPath,run_id);
 
         copyOutputToNewDirectory(run_id, directoryPath);
         onExecutionFinished(false, "Robot executed successfully");
@@ -365,7 +365,7 @@ function unzip_robot(zipFilePath, extractTo, onTaskFinished) {
   }
 }
 
-function zip_robot_output(folderPath, outputZipFilePath) {
+function zip_robot_output(folderPath, outputZipFilePath,run_id) {
   folderPath += "/output";
   outputZipFilePath += "/output.zip";
   const zip = new AdmZip();
@@ -388,7 +388,8 @@ function zip_robot_output(folderPath, outputZipFilePath) {
 
   // Write the zip file
   zip.writeZip(outputZipFilePath);
-
+  uploadZipFileAndCreateEntry(outputZipFilePath,run_id)
+  
   console.log(
     `Folder ${folderPath} successfully zipped to ${outputZipFilePath}`
   );

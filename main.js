@@ -23,7 +23,9 @@ const {
   WORKING_DIRECTORY,
   OPEN_DIRETORY_COMMAND,
   DEFAULT_OUTPUT_DIRECTORY,
+  ROBOTS_DIRECTORY,
 } = require("./src/utils/constants");
+const { uploadZipFileAndCreateEntry } = require("./src/utils/supabase_utils");
 
 let mainWindow;
 
@@ -106,6 +108,9 @@ function downloadRCCForMac() {
 
 function createWindow() {
   init();
+
+
+  
 
   mainWindow = new BrowserWindow({
     width: 800,
